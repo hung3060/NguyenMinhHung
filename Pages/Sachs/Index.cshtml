@@ -1,0 +1,99 @@
+@page
+@model P_31_119001040_NguyenMinhHung.Pages.Sachs.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                    @Html.DisplayNameFor(model => model.Sach[0].SachID)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sach[0].TenSach)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sach[0].TenTG)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sach[0].NXB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sach[0].NgayNhap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sach[0].Gia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sach[0].MoTa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sach[0].DanhMuc)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Sach) {
+        <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.SachID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSach)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenTG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NXB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayNhap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DanhMuc.DanhMucID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.SachID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.SachID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.SachID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.Sach.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Sach.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Sach.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Sach.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>
